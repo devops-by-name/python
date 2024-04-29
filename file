@@ -1,0 +1,17 @@
+$ ssh -i path/to/your-key.pem ec2-user@<your-instance-IP>
+...
+...
+A newer release of "Amazon Linux" is available.
+  Version 2023.2.20231011:
+Run "/usr/bin/dnf check-release-update" for full release and version update info
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/
+...
