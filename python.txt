@@ -7,4 +7,4 @@ bhj
 
 
 
-"bug fix done"
+#final merged version without conflict markers
