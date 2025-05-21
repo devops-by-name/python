@@ -13,6 +13,9 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt
+      - echo "DOCKER_REGISTRY_USERNAME=$DOCKER_REGISTRY_USERNAME"
+      - echo "DOCKER_REGISTRY_PASSWORD length=${#DOCKER_REGISTRY_PASSWORD}"
+
   build:
     commands:
       - echo "Running tests..."
