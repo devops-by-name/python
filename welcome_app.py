@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Hello from Python-Flask automated successfully!"
+    return "Code Build Done successfully CI"
 
 @app.route('/health')
 def health():
