@@ -3,12 +3,8 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return "Code Build Done successfully CI"
-
-@app.route('/health')
-def health():
-    return "OK", 200
+def hello():
+    return 'Hello, world!'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
