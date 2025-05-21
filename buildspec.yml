@@ -16,7 +16,7 @@ phases:
       - echo "DOCKER_REGISTRY_USERNAME=$DOCKER_REGISTRY_USERNAME"
       - echo "DOCKER_REGISTRY_PASSWORD length=${#DOCKER_REGISTRY_PASSWORD}"
 
- build:
+build:
   commands:
     - echo "Running tests..."
     - echo "Building Docker image..."
