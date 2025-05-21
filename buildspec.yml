@@ -5,29 +5,35 @@ env:
     DOCKER_REGISTRY_USERNAME: Docker-credentials-username
     DOCKER_REGISTRY_PASSWORD: Docker-credentials-password
     DOCKER_REGISTRY_URL: Docker-registry-url
+
 phases:
   install:
     runtime-versions:
       python: 3.11
-  pre_build:
     commands:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt
-      - echo "DOCKER_REGISTRY_USERNAME=$DOCKER_REGISTRY_USERNAME"
-      - echo "DOCKER_REGISTRY_PASSWORD length=${#DOCKER_REGISTRY_PASSWORD}"
 
-build:
-  commands:
-    - echo "Running tests..."
-    - echo "Building Docker image..."
-    - |
-      docker_login_output=$(echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin 2>&1) || { echo "Docker login failed:"; echo "$docker_login_output"; exit 1; }
-    - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" .
-    - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest"
+  pre_build:
+    commands:
+      - echo "Logging into Docker..."
+      - |
+        docker_login_output=$(echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL" 2>&1) || { echo "Docker login failed:"; echo "$docker_login_output"; exit 1; }
+        echo "$docker_login_output"
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" .
+      - echo "Pushing Docker image..."
+      - |
+        docker_push_output=$(docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" 2>&1) || { echo "Docker push failed:"; echo "$docker_push_output"; exit 1; }
+        echo "$docker_push_output"
 
   post_build:
     commands:
       - echo "Build completed successfully!"
+
 artifacts:
   files:
     - '**/*'
