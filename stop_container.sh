@@ -1,3 +1,3 @@
 #!/bin/bash
-ContainerID=docker ps | awk -F " " '{print $1}'
+ContainerID=$(docker ps | awk 'NR>1 {print $1}')
 docker rm -f $ContainerID
