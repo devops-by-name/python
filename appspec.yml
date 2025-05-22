@@ -7,6 +7,6 @@ files:
 
 hooks:
   AfterInstall:
-    - location: /home/ubuntu/app/start_container.sh
+    - location: start_container.sh
       timeout: 300
       runas: root
