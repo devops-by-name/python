@@ -6,6 +6,10 @@ files:
     destination: /home/ubuntu/app/
 
 hooks:
+  BeforeInstall:
+    - location: chmod_start_container.sh
+      timeout: 60
+      runas: root
   AfterInstall:
     - location: /home/ubuntu/app/start_container.sh
       timeout: 300
