@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: start_container.sh
-    destination: /home/ubuntu/app/
+    destination: home/ubuntu/app/
 
 hooks:
   BeforeInstall:
@@ -11,6 +11,6 @@ hooks:
       timeout: 60
       runas: root
   AfterInstall:
-    - location: /home/ubuntu/app/start_container.sh
+    - location: home/ubuntu/app/start_container.sh
       timeout: 300
       runas: root
