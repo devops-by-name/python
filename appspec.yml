@@ -2,20 +2,15 @@ version: 0.0
 os: linux
 
 files:
-  - source: stop_container.sh
-    destination: /home/ubuntu/app/
   - source: start_container.sh
+    destination: /home/ubuntu/app/
+  - source: chmod_scripts.sh
     destination: /home/ubuntu/app/
 
 hooks:
   BeforeInstall:
-    - location: chmod_scripts.sh
+    - location: /home/ubuntu/app/chmod_scripts.sh
       timeout: 60
-      runas: root
-
-  ApplicationStop:
-    - location: /home/ubuntu/app/stop_container.sh
-      timeout: 300
       runas: root
 
   AfterInstall:
