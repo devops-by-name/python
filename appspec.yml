@@ -1,8 +1,12 @@
 version: 0.0
 os: linux
 
+files:
+  - source: start_container.sh
+    destination: /home/ubuntu/app/
+
 hooks:
   AfterInstall:
-    - location: start_container.sh
+    - location: /home/ubuntu/app/start_container.sh
       timeout: 300
       runas: root
