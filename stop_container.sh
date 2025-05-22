@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# Get running container IDs (skip header)
-ContainerID=$(docker ps -q)
+# Get all running container IDs (skip header)
+ContainerIDs=$(docker ps -q)
 
-# If any container is running, stop it
-if [ ! -z "$ContainerID" ]; then
-  docker rm -f $ContainerID
+# Check if any container is running
+if [ -n "$ContainerIDs" ]; then
+  # Stop and remove all running containers
+  docker rm -f $ContainerIDs
+else
+  echo "No running containers to stop."
 fi
